@@ -13,7 +13,21 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int score = 0;
   int current = 1;
-  int MAX_TURN = 5;
+  int maxTurns = 5;
+  int currTurn = 0;
+  List<Widget> turnIndicator = [];
+
+  void updateTurn() {
+    turnIndicator.add(Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Icon(
+        Icons.check,
+        color: Colors.green[400],
+        size: 40,
+      ),
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -40,13 +54,21 @@ class _HomeState extends State<Home> {
                     padding: const EdgeInsets.symmetric(vertical: 30),
                     child: TextButton(
                         onPressed: () {
-                          current = new Random().nextInt(6) + 1;
-                          setState(() {
-                            score += current;
-                          });
+                          print(currTurn);
+                          if (currTurn < maxTurns) {
+                            currTurn++;
+                            setState(() {
+                              current = new Random().nextInt(6) + 1;
+                              score += current;
+                              updateTurn();
+                            });
+                          }
                         },
                         child: Image.asset("assets/images/dice$current.png")),
-                  )
+                  ),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: turnIndicator)
                 ],
               ),
             ),
