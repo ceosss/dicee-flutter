@@ -43,12 +43,19 @@ class _HomeState extends State<Home> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    "Score: $score",
-                    style: TextStyle(
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      "Score: $score",
+                      style: TextStyle(
                         fontSize: 32,
                         fontWeight: FontWeight.bold,
-                        fontStyle: FontStyle.italic),
+                      ),
+                    ),
+                  ),
+                  Text(
+                    "Click on the dice to roll",
+                    style: TextStyle(fontSize: 12, fontStyle: FontStyle.italic),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 30),
@@ -68,7 +75,11 @@ class _HomeState extends State<Home> {
                   ),
                   Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: turnIndicator)
+                      children: turnIndicator),
+                  Text(
+                    "Turns Left: ${maxTurns - currTurn}",
+                    style: TextStyle(fontSize: 12, fontStyle: FontStyle.italic),
+                  )
                 ],
               ),
             ),
