@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 void main() {
   runApp(Home());
@@ -11,6 +12,8 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int score = 0;
+  int current = 1;
+  int MAX_TURN = 5;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -35,7 +38,14 @@ class _HomeState extends State<Home> {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 30),
-                    child: Image.asset("assets/images/dice1.png"),
+                    child: TextButton(
+                        onPressed: () {
+                          current = new Random().nextInt(6) + 1;
+                          setState(() {
+                            score += current;
+                          });
+                        },
+                        child: Image.asset("assets/images/dice$current.png")),
                   )
                 ],
               ),
